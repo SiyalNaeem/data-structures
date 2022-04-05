@@ -1,10 +1,6 @@
+import { LinkedListNode } from "./linkedListstypes";
+
 // 10 --> 5 --> 16
-
-type LinkedListNode = {
-    value: any, 
-    next: any
-}
-
 class LinkedList {
 
     private head: LinkedListNode;
@@ -126,6 +122,21 @@ class LinkedList {
 
     }
 
+    public reverse(){
+        let currentNode = this.head;
+        let previousNode: LinkedListNode = {};
+        let nextNode: LinkedListNode = {};
+
+        while(currentNode != null){
+            nextNode = currentNode.next;
+            currentNode.next = previousNode;
+            previousNode = currentNode;
+            currentNode = nextNode;
+        }
+
+        this.head = previousNode;
+    }
+
 }
 
 let myLinkedList = new LinkedList(10);
@@ -134,6 +145,8 @@ myLinkedList.append(16);
 myLinkedList.prepend(9);
 myLinkedList.insert(2, 6);
 myLinkedList.insert(99, 100);
-myLinkedList.printList();
 console.log(myLinkedList.lookup(100));
-// console.log(myLinkedList)
+myLinkedList.printList();
+myLinkedList.reverse();
+myLinkedList.printList();
+
