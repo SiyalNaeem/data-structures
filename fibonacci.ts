@@ -19,13 +19,22 @@ function fibonacciIterative(n: number) { //O(n)
     return arr[n];
 
 }
-console.log(fibonacciIterative(8));
-
-function fibonacciRecursive(n: number):number { //O(2^n)
-    if (n < 2) {
-        return n;
+// console.log(fibonacciIterative(8));
+function fibonacciRecursive() { //O(2^n)
+    let cache: any = {};
+    return function fib(n: number): number{
+        if (n < 2) {
+            return n;
+        }
+        if(n in cache){
+            return cache[n];
+        }
+        cache[n] = fib(n - 1) + fib(n - 2);
+        return cache[n];
     }
-    return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+    
 }
 
-console.log(fibonacciRecursive(8))
+let fibCalc = fibonacciRecursive();
+
+console.log(fibCalc(869))
