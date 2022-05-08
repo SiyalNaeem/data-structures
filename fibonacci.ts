@@ -21,8 +21,8 @@ function fibonacciIterative(n: number) { //O(n)
 }
 // console.log(fibonacciIterative(8));
 function fibonacciRecursive() { //O(2^n)
-    let cache: any = {};
-    return function fib(n: number): number{
+    let cache = {};
+    return function fib(n){
         if (n < 2) {
             return n;
         }
